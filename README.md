@@ -1,51 +1,65 @@
-# jorn's PC 💙
+# jorn's PC
 
-Official website for **jorn's PC** — custom PC builds, repairs &amp; upgrades, and quality components.
+Official website for **jorn's PC** — hand-built custom PCs, repairs &amp; upgrades, and quality components.
 
-A fast, animation-rich, mobile-friendly company site. Built with **plain HTML / CSS / JavaScript** — no frameworks, no build step, free to host.
+A fast, animation-rich, mobile-friendly shop-site. Built with **plain HTML / CSS / JavaScript** — no frameworks, no build step, free to host on GitHub Pages.
 
 ## Pages
 
 | Page | Path | What's on it |
 |---|---|---|
-| Home | `index.html` | Animated hero (typing headline + floating PC + gliding chips), brand marquee, services preview, "why us", animated stats, featured rigs, testimonials, FAQ, CTA band |
-| Custom Builds | `builds.html` | Starter / Gaming / Creator Pro tiers with SVG artwork, spec lists, prices, build process steps |
-| Services | `services.html` | Repairs, upgrades, components, cleaning, data recovery, tune-ups + transparent pricing table |
+| Home | `index.html` | Product-reveal hero (JORN ONE), featured PCs, short "Why JORN", accessories teaser, FAQ, CTA |
+| PCs | `products.html` | Full store grid with live "Add to cart" |
+| Product detail | `product.html?id=jorn-one` (also `jorn-glide`, `jorn-craft`, `jorn-flux`) | Spec chips over CSS PC art, performance bars (FHD/QHD/UHD + existing benchmarks), clicking a spec row highlights the matching chip, quantity stepper, Add to cart / Buy now, related accessories |
+| Build | `build.html` | Interactive **Build Your PC** configurator — pick all 7 parts (CPU → PSU), live total, case diagram that lights up, parts manifest, add the config to cart |
+| Accessories | `accessories.html` | Keyboards / Mice / Monitors / Headsets / Mousepads / RGB &amp; Desk — filterable, add to cart, all categories feed the cart too |
+| About | `about.html` | The story, four core values, CTA |
+| Services | `services.html` | Repairs, upgrades, components, cleaning, data recovery, tune-ups + pricing table |
 | Contact | `contact.html` | Email &amp; Discord cards with copy buttons, enquiry form (opens a pre-filled email), hours |
+
+## Cart
+
+Everything in the shop lands in one persistent cart:
+
+- Slide-in drawer (add / remove / quantity steppers / per-line totals / subtotal / empty state)
+- Count badge in the header on every page
+- Persists in `localStorage` across pages and refreshes
+- **Checkout** composes a real order email via `mailto:` (subject + itemised body) — pre-filled, just send
+- "Buy now" on a product page adds it then opens the same checkout
+
+## Data
+
+All products, parts and accessories live in one file, `js/data.js` (`window.JORN`). Edit prices, specs, stock hype — the pages render themselves. The cart engine is `js/cart.js`; page wiring is `js/main.js`.
 
 ## Animations included
 
-- **Page-switch hop curtain** — a full-screen azure curtain hops in (overshoot bounce) and out on every navigation
-- **Hero entrance hop** — badge, headline, text and buttons pop in one-by-one on page load
-- **Blur-to-sharp scroll reveals** — sections fade, slide and de-blur as they enter the viewport
-- **Hero parallax** — the PC art drifts subtly opposite your scroll (desktop, transform-only)
-- Floating PC case (pure CSS), gliding chips, rising particles, brand marquee
-- Hover glow + 3D tilt on cards
-- Animated stat counters, sticky nav, preloader, back-to-top, theme scrollbar
+- **Page-switch hop curtain** — a full-screen azure curtain hops in and out on every navigation
+- **Loader v2** — logo, progress bar and cycling status text ("Booting systems" → "Final checks"), skipped on repeat visits
+- **Product reveal** — flagship hero: spotlight cone, rotating RGB trail, component chips gliding in, pre-reveal tags flipped (CSS-only, transform/opacity)
+- Blur-to-sharp scroll reveals, hero parallax (desktop, transform-only), floating PC art, gliding chips, particles that pause off-screen
+- Hover glow + 3D tilt on cards, animated stat counters, sticky nav, back-to-top, themed scrollbar
 - Respects `prefers-reduced-motion`
 
 ## Performance notes
 
-The site is tuned to stay smooth (60fps) on modest laptops:
+Tuned to stay smooth (60fps) on modest laptops:
 
-- All continuous animations are `transform`/`opacity`-only, so they run on the GPU compositor — no per-frame repaints.
-- No `backdrop-filter` blur (a common cause of GPU hangs/crashes on Windows).
+- All continuous animations are `transform`/`opacity`-only → GPU compositor, no per-frame repaints.
+- No `backdrop-filter` blur (a common cause of GPU hangs on Windows).
 - Off-screen hero animations and sections are paused / skipped (`content-visibility`), so they cost ~0 while scrolling.
-- Particle count is kept low and reduced further automatically for users who prefer reduced motion.
+- Hero/stage art is scaled down on mobile to keep budget GPUs happy.
 
 ## Customize it (2-minute checklist)
 
-Open these files and search/replace these values:
-
 | What | Where |
 |---|---|
-| Real email address | `contact.html` — `hello@jornspc.example` (used in the form + copy button) |
+| Real email address | `contact.html` + `js/cart.js` — `hello@jornspc.example` |
 | Real Discord invite | `contact.html` — `discord.gg/jornspc` |
-| Social media links | `index.html`, `builds.html`, `services.html`, `contact.html` — the `class="social-link"` blocks (currently `href="#"`) |
-| Prices, specs, testimonials | `index.html`, `builds.html`, `services.html` |
+| Social media links | footer of every page — `class="social-link"` (currently `href="#"`) |
+| Prices &amp; specs | `js/data.js` — `JORN.pcs`, `JORN.builder`, `JORN.accessories` |
 | Brand colors | `css/style.css` — `--azure` / `--ice` variables at the top |
 
-> The enquiry form opens the visitor's email app with a pre-filled message. To receive real submissions, swap the placeholder address for your own.
+> Cart checkout and the enquiry form open the visitor's email app with a pre-filled message. Swap the placeholder address for your own to receive real submissions.
 
 ## Deploy to GitHub Pages (free, public URL)
 
@@ -53,17 +67,6 @@ Open these files and search/replace these values:
 2. Push these files to the `main` branch **at the root of the repo**.
 3. Go to **Settings → Pages**, set **Source** to `Deploy from a branch`, branch `main`, folder `/ (root)` → **Save**.
 4. Your site is live at `https://<your-username>.github.io/<repo-name>/`.
-
-### Quick CLI version (requires GitHub CLI + git)
-
-```bash
-git init
-git add .
-git commit -m "Initial release of jorn's PC website"
-gh repo create jorn-pc --public --source=. --push
-```
-
-Then enable Pages in Settings (or wait a minute — GitHub auto-suggests Pages once the repo has files).
 
 ## Local preview
 

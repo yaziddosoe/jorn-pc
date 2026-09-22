@@ -23,13 +23,18 @@
   <div class="page-curtain" id="pageCurtain" aria-hidden="true"></div>
 
   <div class="preloader" aria-hidden="true">
-    <div class="loader-arc"></div>
-    <svg class="loader-logo" viewBox="0 0 48 48" width="72" height="72">
-      <rect x="2" y="2" width="44" height="44" rx="12" fill="#003152" stroke="#ADDFF1" stroke-opacity="0.35" stroke-width="2"/>
-      <rect x="11" y="13" width="26" height="5" rx="2.5" fill="#ADDFF1"/>
-      <rect x="29" y="13" width="5" height="18" rx="2.5" fill="#ADDFF1"/>
-      <rect x="11" y="31" width="22" height="5" rx="2.5" fill="#5FC6EC"/>
-    </svg>
+    <div class="loader-logo">
+      <div class="loader-arc"></div>
+      <svg viewBox="0 0 48 48" width="72" height="72">
+        <rect x="2" y="2" width="44" height="44" rx="12" fill="#003152" stroke="#ADDFF1" stroke-opacity="0.35" stroke-width="2"/>
+        <rect x="11" y="13" width="26" height="5" rx="2.5" fill="#ADDFF1"/>
+        <rect x="29" y="13" width="5" height="18" rx="2.5" fill="#ADDFF1"/>
+        <rect x="11" y="31" width="22" height="5" rx="2.5" fill="#5FC6EC"/>
+      </svg>
+    </div>
+    <div class="loader-progress"><div class="loader-bar"></div></div>
+    <p class="loader-status" id="loaderStatus">Booting systems</p>
+    <p class="loader-brand">JORN · PC</p>
   </div>
 
   <header class="site-header" id="siteHeader">
@@ -45,11 +50,17 @@
       </a>
       <nav class="nav" id="primaryNav" aria-label="Primary navigation">
         <ul>
-          <li><a class="nav-link" href="index.html">Home</a></li>
-          <li><a class="nav-link" href="builds.html">Custom Builds</a></li>
-          <li><a class="nav-link" href="services.html">Services</a></li>
-          <li><a class="nav-link btn nav-cta btn--sm" href="contact.html">Start a Build</a></li>
+          <li><a class="nav-link" href="index.html" data-nav="index">Home</a></li>
+          <li><a class="nav-link" href="products.html" data-nav="products">PCs</a></li>
+          <li><a class="nav-link" href="build.html" data-nav="build">Build</a></li>
+          <li><a class="nav-link" href="accessories.html" data-nav="accessories">Accessories</a></li>
+          <li><a class="nav-link" href="services.html" data-nav="services">Services</a></li>
+          <li><a class="nav-link" href="about.html" data-nav="about">About</a></li>
         </ul>
+        <button class="cart-bar" type="button" aria-label="Open cart">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12zM3 3h3"/><circle cx="9.5" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/></svg>
+          <span class="cart-count" aria-hidden="true"></span>
+        </button>
       </nav>
       <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Toggle menu"><span></span></button>
     </div>
@@ -230,22 +241,22 @@
         </div>
 
         <div class="footer-col">
-          <h4>Explore</h4>
+          <h4>Shop</h4>
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="builds.html">Custom Builds</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="products.html">Ready-built PCs</a></li>
+            <li><a href="build.html">Build your own</a></li>
+            <li><a href="accessories.html">Accessories</a></li>
+            <li><a href="services.html">Repairs &amp; upgrades</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Services</h4>
+          <h4>Company</h4>
           <ul>
-            <li><a href="services.html">Repairs &amp; diagnostics</a></li>
-            <li><a href="services.html">Upgrades &amp; installs</a></li>
-            <li><a href="services.html">Components &amp; parts</a></li>
-            <li><a href="builds.html">Custom builds</a></li>
+            <li><a href="about.html">About JORN PC</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html">Bespoke requests</a></li>
+            <li><a href="services.html">Warranty &amp; bench tests</a></li>
           </ul>
         </div>
 
@@ -285,6 +296,8 @@
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
   </button>
 
-  <script src="js/main.js"></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/cart.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details — jorn's PC</title>
+  <meta name="description" content="Full specifications, performance and components for your chosen jorn's PC rig.">
+  <meta name="theme-color" content="#003152">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="p-product">
+  <noscript><style>.preloader{display:none}.reveal,.stagger>*{opacity:1 !important;transform:none !important;filter:none !important}.hero [data-hero],.page-hero [data-hero]{opacity:1 !important;animation:none !important}</style></noscript>
+
+  <div class="page-curtain" id="pageCurtain" aria-hidden="true"></div>
+
+  <div class="preloader" aria-hidden="true">
+    <div class="loader-logo">
+      <div class="loader-arc"></div>
+      <svg viewBox="0 0 48 48" width="72" height="72">
+        <rect x="2" y="2" width="44" height="44" rx="12" fill="#003152" stroke="#ADDFF1" stroke-opacity="0.35" stroke-width="2"/>
+        <rect x="11" y="13" width="26" height="5" rx="2.5" fill="#ADDFF1"/>
+        <rect x="29" y="13" width="5" height="18" rx="2.5" fill="#ADDFF1"/>
+        <rect x="11" y="31" width="22" height="5" rx="2.5" fill="#5FC6EC"/>
+      </svg>
+    </div>
+    <div class="loader-progress"><div class="loader-bar"></div></div>
+    <p class="loader-status" id="loaderStatus">Booting systems</p>
+    <p class="loader-brand">JORN · PC</p>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand" aria-label="jorn's PC — home">
+        <svg viewBox="0 0 48 48" width="34" height="34" aria-hidden="true">
+          <rect x="2" y="2" width="44" height="44" rx="12" fill="#003152" stroke="#ADDFF1" stroke-opacity="0.35" stroke-width="2"/>
+          <rect x="11" y="13" width="26" height="5" rx="2.5" fill="#ADDFF1"/>
+          <rect x="29" y="13" width="5" height="18" rx="2.5" fill="#ADDFF1"/>
+          <rect x="11" y="31" width="22" height="5" rx="2.5" fill="#5FC6EC"/>
+        </svg>
+        <span>jorn<span class="brand-amp">'s</span>&nbsp;PC</span>
+      </a>
+      <nav class="nav" id="primaryNav" aria-label="Primary navigation">
+        <ul>
+          <li><a class="nav-link" href="index.html" data-nav="index">Home</a></li>
+          <li><a class="nav-link" href="products.html" data-nav="products">PCs</a></li>
+          <li><a class="nav-link" href="build.html" data-nav="build">Build</a></li>
+          <li><a class="nav-link" href="accessories.html" data-nav="accessories">Accessories</a></li>
+          <li><a class="nav-link" href="services.html" data-nav="services">Services</a></li>
+          <li><a class="nav-link" href="about.html" data-nav="about">About</a></li>
+        </ul>
+        <button class="cart-bar" type="button" aria-label="Open cart">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12zM3 3h3"/><circle cx="9.5" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/></svg>
+          <span class="cart-count" aria-hidden="true"></span>
+        </button>
+      </nav>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Toggle menu"><span></span></button>
+    </div>
+  </header>
+
+<main class="page-entrance">
+
+  <div class="pd-wrap">
+    <div class="container">
+
+      <p class="breadcrumb reveal"><a href="products.html">Ready-built PCs</a> · <span id="pdBreadcrumb">Loading</span></p>
+
+      <div class="pd-grid">
+
+        <div class="pd-stage reveal" id="pdStage">
+          <div class="pd-glow" aria-hidden="true"></div>
+        </div>
+
+        <div class="pd-info">
+          <div class="pd-eyebrow reveal">
+            <span class="pd-tier" id="pdTier" data-hero="1">Flagship</span>
+            <span class="pd-status" data-hero="2"><span class="led"></span><span id="pdStatus">Performance Mode</span></span>
+          </div>
+          <h1 id="pdName" data-hero="2">JORN ONE</h1>
+          <p class="pd-tagline" id="pdTagline" data-hero="3">The machine at the top. Pure speed.</p>
+          <p class="pd-short" id="pdShort" data-hero="4">Flagship gaming &amp; 4K monster.</p>
+
+          <div class="pd-price" data-hero="5">
+            <span class="big" id="pdPrice">$4,299</span>
+            <span style="color:var(--muted);font-size:.9rem;">Free shipping · assembled &amp; tested</span>
+          </div>
+          <div class="pd-warranty" data-hero="5">
+            <span class="wt">2-year warranty</span>
+            <span class="wt">Free diagnostics</span>
+            <span class="wt">24h burn-in test</span>
+          </div>
+
+          <div class="pd-buy" data-hero="6">
+            <div class="qty" role="group" aria-label="Quantity">
+              <button type="button" class="qty-btn" id="pdMinus" aria-label="Decrease quantity">−</button>
+              <span class="qty-val" id="pdQty">1</span>
+              <button type="button" class="qty-btn" id="pdPlus" aria-label="Increase quantity">+</button>
+            </div>
+            <button type="button" class="btn" id="pdAdd">Add to cart</button>
+            <button type="button" class="btn btn--ghost" id="pdBuy">Buy now</button>
+          </div>
+
+          <div class="perf-panel reveal" id="pdPerf">
+            <div class="perf-head">
+              <h3>Expected performance</h3>
+              <span class="perf-badge"><span class="led led--cool"></span><span id="pdPerfTag">Performance Mode</span></span>
+            </div>
+            <div class="perf-row">
+              <div class="perf-lab"><span>1080p · high settings</span><b id="pdFhd">~490 FPS</b></div>
+              <div class="perf-track"><div class="perf-fill" id="pdFillFhd" style="--p:.45"></div></div>
+            </div>
+            <div class="perf-row">
+              <div class="perf-lab"><span>1440p · high settings</span><b id="pdQhd">~330 FPS</b></div>
+              <div class="perf-track"><div class="perf-fill" id="pdFillQhd" style="--p:.6"></div></div>
+            </div>
+            <div class="perf-row">
+              <div class="perf-lab"><span>4K · high settings</span><b id="pdUhd">~175 FPS</b></div>
+              <div class="perf-track"><div class="perf-fill" id="pdFillUhd" style="--p:.75"></div></div>
+            </div>
+            <div class="perf-bench">
+              <span class="led"></span>Bench score·<b id="pdBench">19,800</b><span style="color:var(--ice-dim);font-size:.8rem;">(3DMark Time Spy estimate)</span>
+            </div>
+          </div>
+
+          <div class="spec-panel reveal" id="pdSpecPanel">
+            <div class="sp-head">
+              <h3>Specifications</h3>
+              <p>Click any row to highlight the component on the build.</p>
+            </div>
+            <dl class="sp-grid" id="pdSpecs"></dl>
+          </div>
+        </div>
+      </div>
+
+      <section class="section" style="padding-bottom:0;">
+        <div class="shop-head reveal">
+          <div>
+            <span class="eyebrow">Complete the setup</span>
+            <h2>Pairs well with</h2>
+          </div>
+          <a class="btn btn--ghost" href="accessories.html">Browse accessories <span class="arrow">→</span></a>
+        </div>
+        <div class="acc-grid stagger" id="pdAcc"></div>
+      </section>
+
+      <section class="section">
+        <div class="cta-band reveal">
+          <span class="eyebrow">Want it your way?</span>
+          <h2>Start from scratch or base it on this rig.</h2>
+          <p>Open the configurator and swap any part — watch the estimate update as you go.</p>
+          <div class="hero-ctas" style="justify-content:center;margin-bottom:0;">
+            <a class="btn btn--lg" href="build.html">Configure your own <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+</main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand" aria-label="jorn's PC — home">
+            <svg viewBox="0 0 48 48" width="34" height="34" aria-hidden="true">
+              <rect x="2" y="2" width="44" height="44" rx="12" fill="#003152" stroke="#ADDFF1" stroke-opacity="0.35" stroke-width="2"/>
+              <rect x="11" y="13" width="26" height="5" rx="2.5" fill="#ADDFF1"/>
+              <rect x="29" y="13" width="5" height="18" rx="2.5" fill="#ADDFF1"/>
+              <rect x="11" y="31" width="22" height="5" rx="2.5" fill="#5FC6EC"/>
+            </svg>
+            <span>jorn<span class="brand-amp">'s</span>&nbsp;PC</span>
+          </a>
+          <p>Hand-built custom gaming PCs, honest repairs and quality components — engineered for dream setups.</p>
+          <div class="footer-badges">
+            <span class="footer-badge hot">2-year warranty</span>
+            <span class="footer-badge">Free diagnostics</span>
+            <span class="footer-badge">Lifetime support</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="products.html">Ready-built PCs</a></li>
+            <li><a href="build.html">Build your own</a></li>
+            <li><a href="accessories.html">Accessories</a></li>
+            <li><a href="services.html">Repairs &amp; upgrades</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About JORN PC</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html">Bespoke requests</a></li>
+            <li><a href="services.html">Warranty &amp; bench tests</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Stay sharp</h4>
+          <p style="color:var(--muted);font-size:.92rem;margin-bottom:16px;">Build drops, deals and parts restocks — straight to your inbox. No spam, ever.</p>
+          <form class="news-form" id="newsForm">
+            <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required>
+            <button class="btn btn--sm" type="submit">Join</button>
+          </form>
+          <p class="news-note" id="newsNote"></p>
+          <div class="socials">
+            <a class="social-link" href="#" aria-label="Discord" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037 19.736 19.736 0 0 0-4.885 1.515.07.07 0 0 0-.032.028C.533 9.046-.32 13.58.099 18.058a.082.082 0 0 0 .031.056c2.053 1.507 4.041 2.423 5.993 3.03a.078.078 0 0 0 .084-.028c.462-.63.873-1.295 1.226-1.994a.076.076 0 0 0-.041-.106c-.653-.247-1.274-.549-1.872-.892a.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.099.246.198.373.291a.077.077 0 0 1-.007.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028c1.961-.607 3.95-1.522 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.673-3.549-13.66a.06.06 0 0 0-.031-.029ZM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418Zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418Z"/></svg>
+            </a>
+            <a class="social-link" href="#" aria-label="Instagram" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a class="social-link" href="#" aria-label="TikTok" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07Z"/></svg>
+            </a>
+            <a class="social-link" href="#" aria-label="YouTube" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81ZM9.55 15.57V8.43L15.82 12l-6.27 3.57Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="year">2026</span> jorn's PC. Built in-house, tested until it's boring.</p>
+        <p>Custom PCs · Repairs · Components — <a href="contact.html">Get in touch anytime</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" type="button" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <script src="js/data.js" defer></script>
+  <script src="js/cart.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
