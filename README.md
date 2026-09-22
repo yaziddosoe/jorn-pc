@@ -15,14 +15,23 @@ A fast, animation-rich, mobile-friendly company site. Built with **plain HTML / 
 
 ## Animations included
 
-- Scroll-reveal fade/slide for every section (IntersectionObserver)
-- Hero typing effect + rising particle field
-- Floating PC case with spinning fans and animated RGB strip (pure CSS)
+- **Page-switch hop curtain** — a full-screen azure curtain hops in (overshoot bounce) and out on every navigation
+- **Hero entrance hop** — badge, headline, text and buttons pop in one-by-one on page load
+- **Blur-to-sharp scroll reveals** — sections fade, slide and de-blur as they enter the viewport
+- **Hero parallax** — the PC art drifts subtly opposite your scroll (desktop, transform-only)
+- Floating PC case (pure CSS), gliding chips, rising particles, brand marquee
 - Hover glow + 3D tilt on cards
-- Animated stat counters
-- Sticky nav that transforms on scroll, smooth hamburger on mobile
-- Preloader, back-to-top button, custom theme scrollbar
+- Animated stat counters, sticky nav, preloader, back-to-top, theme scrollbar
 - Respects `prefers-reduced-motion`
+
+## Performance notes
+
+The site is tuned to stay smooth (60fps) on modest laptops:
+
+- All continuous animations are `transform`/`opacity`-only, so they run on the GPU compositor — no per-frame repaints.
+- No `backdrop-filter` blur (a common cause of GPU hangs/crashes on Windows).
+- Off-screen hero animations and sections are paused / skipped (`content-visibility`), so they cost ~0 while scrolling.
+- Particle count is kept low and reduced further automatically for users who prefer reduced motion.
 
 ## Customize it (2-minute checklist)
 

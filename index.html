@@ -19,7 +19,9 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="p-home">
-  <noscript><style>.preloader{display:none}</style></noscript>
+  <noscript><style>.preloader{display:none}.reveal,.stagger>*{opacity:1 !important;transform:none !important;filter:none !important}.hero [data-hero],.page-hero [data-hero]{opacity:1 !important;animation:none !important}</style></noscript>
+
+  <div class="page-curtain" id="pageCurtain" aria-hidden="true"></div>
 
   <div class="preloader" aria-hidden="true">
     <div class="loader-arc"></div>
@@ -53,20 +55,20 @@
       <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Toggle menu"><span></span></button>
     </div>
   </header>
+<main class="page-entrance">
 
-  <main>
     <!-- ================= HERO ================= -->
     <section class="hero" data-particles>
       <div class="container">
         <div class="hero-copy">
-          <span class="hero-badge"><span class="dot"></span> Now accepting custom builds &amp; repairs</span>
-          <h1>Custom PCs, built for <span class="typed-wrap"><span class="typed" data-typing="Gaming.|Your work.|Creation.|You."></span></span></h1>
-          <p class="lead">jorn's PC designs, builds, repairs and supplies the parts behind dependable custom computers — hand-built around your needs and your budget, tested before it ever reaches your desk.</p>
-          <div class="hero-ctas">
+          <span class="hero-badge" data-hero="1"><span class="dot"></span> Now accepting custom builds &amp; repairs</span>
+          <h1 data-hero="2">Custom PCs, built for <span class="typed-wrap"><span class="typed" data-typing="Gaming.|Your work.|Creation.|You."></span></span></h1>
+          <p class="lead" data-hero="3">jorn's PC designs, builds, repairs and supplies the parts behind dependable custom computers — hand-built around your needs and your budget, tested before it ever reaches your desk.</p>
+          <div class="hero-ctas" data-hero="4">
             <a class="btn btn--lg" href="contact.html">Start Your Build <span class="arrow">→</span></a>
             <a class="btn btn--ghost btn--lg" href="services.html">Explore Services</a>
           </div>
-          <ul class="hero-trust">
+          <ul class="hero-trust" data-hero="5">
             <li>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.5 8-9V5l-8-3-8 3v8c0 5.5 8 9 8 9z"/></svg>
               Free diagnostics
@@ -82,7 +84,7 @@
           </ul>
         </div>
 
-        <div class="hero-visual reveal">
+        <div class="hero-visual parallax" data-hero="6">
           <div class="pc-stage">
             <div class="pc">
               <div class="pc-glass">

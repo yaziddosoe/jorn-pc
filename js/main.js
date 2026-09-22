@@ -7,19 +7,75 @@
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  function sess(k) { try { return sessionStorage.getItem(k) === '1'; } catch (e) { return false; } }
+  function sessSet(k) { try { sessionStorage.setItem(k, '1'); } catch (e) {} }
+  function sessDel(k) { try { sessionStorage.removeItem(k); } catch (e) {} }
+
   /* ---------- Preloader ---------- */
   var loader = document.querySelector('.preloader');
+  var arrivedViaCurtain = sess('jpcCurtain');
   if (loader) {
-    window.addEventListener('load', function () {
-      setTimeout(function () { loader.classList.add('done'); }, 550);
-    });
-    setTimeout(function () { loader.classList.add('done'); }, 3200);
+    if (arrivedViaCurtain) {
+      loader.classList.add('done');
+    } else {
+      window.addEventListener('load', function () {
+        setTimeout(function () { loader.classList.add('done'); }, 550);
+      });
+      setTimeout(function () { loader.classList.add('done'); }, 3200);
+    }
   }
 
-  /* ---------- Sticky header ---------- */
+  /* ---------- Page-switch hop curtain ---------- */
+  var curtain = document.getElementById('pageCurtain');
+  if (curtain) {
+    if (arrivedViaCurtain) {
+      sessDel('jpcCurtain');
+      curtain.classList.add('no-anim', 'in');
+      void curtain.offsetWidth;
+      curtain.classList.remove('no-anim', 'in');
+    }
+    document.querySelectorAll('a[href]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var href = a.getAttribute('href');
+        if (!href || a.target === '_blank' || a.hasAttribute('download')) return;
+        if (/^(https?:|mailto:|tel:|#)/i.test(href)) return;
+        e.preventDefault();
+        sessSet('jpcCurtain');
+        curtain.classList.add('in');
+        setTimeout(function () { window.location.href = a.href; }, 340);
+      });
+    });
+  }
+
+  /* ---------- Hero parallax (transform-only, rAF-throttled) ---------- */
+  var plx = document.querySelector('.parallax');
+  if (plx && !reduced && window.matchMedia('(hover: hover) and (min-width: 761px)').matches) {
+    var plxTicking = false;
+    function onPlx() {
+      plxTicking = false;
+      var y = window.scrollY;
+      if (y > window.innerHeight) return;
+      plx.style.transform = 'translateY(' + (-Math.min(y * 0.08, 26)).toFixed(1) + 'px)';
+    }
+    window.addEventListener('scroll', function () {
+      if (!plxTicking) { plxTicking = true; requestAnimationFrame(onPlx); }
+    }, { passive: true });
+    setTimeout(function () {
+      plx.style.animation = 'none';
+      plx.style.opacity = '1';
+      plx.style.transform = '';
+    }, 1500);
+  }
+
+  /* ---------- Sticky header (rAF-throttled) ---------- */
   var header = document.getElementById('siteHeader');
-  window.addEventListener('scroll', function () {
+  var ticking = false;
+  function onScroll() {
+    ticking = false;
     if (header) header.classList.toggle('scrolled', window.scrollY > 30);
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
   }, { passive: true });
   if (header && window.scrollY > 30) header.classList.add('scrolled');
 
@@ -83,20 +139,31 @@
   /* ---------- Floating particles ---------- */
   var stage = document.querySelector('[data-particles]');
   if (stage && !reduced) {
-    var n = 16;
+    var n = 10;
     for (var i = 0; i < n; i++) {
       var p = document.createElement('span');
       p.className = 'float-part';
-      var size = 4 + Math.random() * 8;
+      var size = 3 + Math.random() * 5;
       p.style.width = size + 'px';
       p.style.height = size + 'px';
       p.style.left = (Math.random() * 100) + '%';
-      p.style.setProperty('--drift', ((Math.random() - 0.5) * 120).toFixed(0) + 'px');
-      var dur = (9 + Math.random() * 9).toFixed(1);
+      p.style.setProperty('--drift', ((Math.random() - 0.5) * 90).toFixed(0) + 'px');
+      var dur = (10 + Math.random() * 8).toFixed(1);
       p.style.animationDuration = dur + 's';
       p.style.animationDelay = (-Math.random() * dur).toFixed(1) + 's';
       stage.appendChild(p);
     }
+  }
+
+  /* ---------- Pause hero animations when off-screen ---------- */
+  var pStages = document.querySelectorAll('[data-particles]');
+  if (pStages.length && 'IntersectionObserver' in window) {
+    var pio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        en.target.classList.toggle('paused', !en.isIntersecting);
+      });
+    }, { threshold: 0 });
+    pStages.forEach(function (el) { pio.observe(el); });
   }
 
   /* ---------- Scroll reveal ---------- */

@@ -18,7 +18,9 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="p-builds">
-  <noscript><style>.preloader{display:none}</style></noscript>
+  <noscript><style>.preloader{display:none}.reveal,.stagger>*{opacity:1 !important;transform:none !important;filter:none !important}.hero [data-hero],.page-hero [data-hero]{opacity:1 !important;animation:none !important}</style></noscript>
+
+  <div class="page-curtain" id="pageCurtain" aria-hidden="true"></div>
 
   <div class="preloader" aria-hidden="true">
     <div class="loader-arc"></div>
@@ -53,12 +55,12 @@
     </div>
   </header>
 
-  <main>
+  <main class="page-entrance">
     <section class="page-hero" data-particles>
       <div class="container">
-        <p class="breadcrumb"><a href="index.html">Home</a> / Custom Builds</p>
-        <h1>Pick a starting point.<br><span class="text-ice">We'll make it yours.</span></h1>
-        <p>Three crowd-favourite configurations below. Every rig is hand-built, cable-managed, stress-tested for 24 hours and covered by a 2-year workmanship warranty. Or tell us exactly what you want — the price rarely differs from what we quote you upfront.</p>
+        <p class="breadcrumb" data-hero="1"><a href="index.html">Home</a> / Custom Builds</p>
+        <h1 data-hero="2">Pick a starting point.<br><span class="text-ice">We'll make it yours.</span></h1>
+        <p data-hero="3">Three crowd-favourite configurations below. Every rig is hand-built, cable-managed, stress-tested for 24 hours and covered by a 2-year workmanship warranty. Or tell us exactly what you want — the price rarely differs from what we quote you upfront.</p>
       </div>
     </section>
 
