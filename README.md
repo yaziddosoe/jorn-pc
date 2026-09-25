@@ -2,54 +2,48 @@
 
 Official website for **jorn's PC** — hand-built custom PCs, repairs &amp; upgrades, and quality components.
 
-A fast, animation-rich, mobile-friendly shop-site. Built with **plain HTML / CSS / JavaScript** — no frameworks, no build step, free to host on GitHub Pages.
+A fast, animation-rich, mobile-friendly shop built with **plain HTML / CSS / JavaScript** — no frameworks, no build step, free to host on GitHub Pages.
 
-## Pages
+## Structure — five experiences
 
-| Page | Path | What's on it |
+| Experience | Path | What's on it |
 |---|---|---|
-| Home | `index.html` | Product-reveal hero (JORN ONE), featured PCs, short "Why JORN", accessories teaser, FAQ, CTA |
-| PCs | `products.html` | Full store grid with live "Add to cart" |
-| Product detail | `product.html?id=jorn-one` (also `jorn-glide`, `jorn-craft`, `jorn-flux`) | Spec chips over CSS PC art, performance bars (FHD/QHD/UHD + existing benchmarks), clicking a spec row highlights the matching chip, quantity stepper, Add to cart / Buy now, related accessories |
+| Home | `index.html` | **Opening screen** ("Built Different." → Explore PCs / Build Yours) → **Choose Your Machine** (JORN CORE / ELITE / TITAN; hovering wakes the RGB) → **`JORN // REVEAL`** — a scroll-staged unveil: the machine appears in the dark, rotates, RGB fires up, the camera zooms in past spinning cooling fans, down to the GPU / RAM / CPU cooler, then pulls back to "Ready to build yours?" |
+| PCs | `products.html` | All three ready-built machines with live "Add to cart" |
+| Product detail | `product.html?id=jorn-titan` (also `jorn-elite`, `jorn-core`) | Spec chips over CSS PC art, performance bars (FHD/QHD/4K + bench), clicking a spec row highlights the matching part, quantity stepper, Add to cart / Buy now, related Setup gear |
 | Build | `build.html` | Interactive **Build Your PC** configurator — pick all 7 parts (CPU → PSU), live total, case diagram that lights up, parts manifest, add the config to cart |
-| Accessories | `accessories.html` | Keyboards / Mice / Monitors / Headsets / Mousepads / RGB &amp; Desk — filterable, add to cart, all categories feed the cart too |
-| About | `about.html` | The story, four core values, CTA |
-| Services | `services.html` | Repairs, upgrades, components, cleaning, data recovery, tune-ups + pricing table |
-| Contact | `contact.html` | Email &amp; Discord cards with copy buttons, enquiry form (opens a pre-filled email), hours |
+| Setup | `accessories.html` | Monitors / keyboards / mice / headsets / mousepads / RGB &amp; desk — filterable, add to cart |
+| Cart | `js/cart.js` (drawer on every page) | Persistent drawer + count badge + `localStorage` + itemised `mailto:` checkout |
+
+About JORN lives in the footer (a short blurb + badge row). Services &amp; contact are kept as slim support pages reachable from the footer's *Support* column.
 
 ## Cart
 
-Everything in the shop lands in one persistent cart:
-
-- Slide-in drawer (add / remove / quantity steppers / per-line totals / subtotal / empty state)
-- Count badge in the header on every page
-- Persists in `localStorage` across pages and refreshes
-- **Checkout** composes a real order email via `mailto:` (subject + itemised body) — pre-filled, just send
-- "Buy now" on a product page adds it then opens the same checkout
+- Slide-in drawer: add / remove / quantity steppers / per-line totals / subtotal / empty state
+- Count badge in the header on every page; persists in `localStorage`
+- **Checkout** composes a real order email via `mailto:` — pre-filled, just send
+- "Buy now" on a product page adds then opens the same checkout
 
 ## Data
 
-All products, parts and accessories live in one file, `js/data.js` (`window.JORN`). Edit prices, specs, stock hype — the pages render themselves. The cart engine is `js/cart.js`; page wiring is `js/main.js`.
+All products, parts and accessories live in `js/data.js` (`window.JORN`). Edit prices/specs and the pages render themselves. Cart engine is `js/cart.js`; page wiring incl. the reveal driver is `js/main.js`. Machine tiers: **CORE** ($1,299), **ELITE** ($2,299), **TITAN** ($4,299).
 
-## Animations included
+## Animations
 
-- **Page-switch hop curtain** — a full-screen azure curtain hops in and out on every navigation
-- **Loader v2** — logo, progress bar and cycling status text ("Booting systems" → "Final checks"), skipped on repeat visits
-- **Product reveal** — flagship hero: spotlight cone, rotating RGB trail, component chips gliding in, pre-reveal tags flipped (CSS-only, transform/opacity)
-- Blur-to-sharp scroll reveals, hero parallax (desktop, transform-only), floating PC art, gliding chips, particles that pause off-screen
-- Hover glow + 3D tilt on cards, animated stat counters, sticky nav, back-to-top, themed scrollbar
-- Respects `prefers-reduced-motion`
+- **Page-switch hop curtain** — azure curtain hops in/out on every navigation
+- **Loader v2** — logo, progress bar, cycling status text ("Booting systems" → "Final checks"), skipped on repeat visits
+- **`JORN // REVEAL`** — scroll-driven staging on the home page: opacity-in → `rotateY` sweep → RGB glow-up → zoom → spinning fan blades → glass-panel interior with focus rings on CPU cooling / RAM / GPU / fans → pull-back into "Ready to build yours?"
+- Blur-to-sharp reveals, GPU-cheap `transform`/`opacity`-only animation, particles paused off-screen, hover RGB reaction on PC cards
+- Respects `prefers-reduced-motion` (reveal collapses into a static showcase + CTA)
 
 ## Performance notes
 
-Tuned to stay smooth (60fps) on modest laptops:
+- All continuous animation is `transform`/`opacity`-only → compositor, no per-frame repaints.
+- No `backdrop-filter` blur.
+- Off-screen sections paused / skipped (`content-visibility`); fan blades hidden on small screens.
+- Respects `prefers-reduced-motion`.
 
-- All continuous animations are `transform`/`opacity`-only → GPU compositor, no per-frame repaints.
-- No `backdrop-filter` blur (a common cause of GPU hangs on Windows).
-- Off-screen hero animations and sections are paused / skipped (`content-visibility`), so they cost ~0 while scrolling.
-- Hero/stage art is scaled down on mobile to keep budget GPUs happy.
-
-## Customize it (2-minute checklist)
+## Customize it
 
 | What | Where |
 |---|---|
@@ -57,20 +51,19 @@ Tuned to stay smooth (60fps) on modest laptops:
 | Real Discord invite | `contact.html` — `discord.gg/jornspc` |
 | Social media links | footer of every page — `class="social-link"` (currently `href="#"`) |
 | Prices &amp; specs | `js/data.js` — `JORN.pcs`, `JORN.builder`, `JORN.accessories` |
-| Brand colors | `css/style.css` — `--azure` / `--ice` variables at the top |
+| Reveal pacing | `js/main.js` — `drawReveal()` stage windows (0.08/0.34/0.46/0.60/0.76/0.94) |
+| Brand colors | `css/style.css` — `--azure` / `--ice` at the top |
 
-> Cart checkout and the enquiry form open the visitor's email app with a pre-filled message. Swap the placeholder address for your own to receive real submissions.
+> Cart checkout and the enquiry form open the visitor's email app with a pre-filled message. Swap the placeholder address for your own.
 
-## Deploy to GitHub Pages (free, public URL)
+## Deploy to GitHub Pages
 
-1. Create a repo on GitHub (or use the CLI below).
-2. Push these files to the `main` branch **at the root of the repo**.
-3. Go to **Settings → Pages**, set **Source** to `Deploy from a branch`, branch `main`, folder `/ (root)` → **Save**.
-4. Your site is live at `https://<your-username>.github.io/<repo-name>/`.
+1. Create a repo on GitHub.
+2. Push these files to `main` **at the repo root**.
+3. **Settings → Pages → Source: `Deploy from a branch` → branch `main`, folder `/ (root)` → Save**.
+4. Live at `https://<username>.github.io/<repo-name>/`.
 
 ## Local preview
-
-Open `index.html` directly in a browser, or run a local server:
 
 ```bash
 python -m http.server 8000

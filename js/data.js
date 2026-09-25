@@ -16,13 +16,13 @@
   /* ---------- Ready-built PCs ---------- */
   JORN.pcs = [
     {
-      id: 'jorn-one',
-      name: 'JORN ONE',
-      tierName: 'Flagship',
+      id: 'jorn-titan',
+      name: 'JORN TITAN',
+      tierName: 'Extreme',
       tagline: 'The machine at the top. Pure speed.',
-      accent: '#5FC6EC',
+      accent: '#9F7BEA',
       price: 4299,
-      short: 'Flagship gaming & 4K monster',
+      short: 'Extreme performance — 4K and beyond',
       chip: 'RTX 5090 · Ryzen 9 · 64GB',
       featured: true,
       warranty: 2,
@@ -46,29 +46,29 @@
       components: ['CPU', 'GPU', 'RAM', 'Storage', 'Cooling', 'Case', 'PSU']
     },
     {
-      id: 'jorn-glide',
-      name: 'JORN GLIDE',
-      tierName: 'Performance',
-      tagline: 'High refresh, high detail, no drama.',
-      accent: '#7fb9cf',
+      id: 'jorn-elite',
+      name: 'JORN ELITE',
+      tierName: 'High-end',
+      tagline: 'High refresh. High detail. No drama.',
+      accent: '#4CD7F6',
       price: 2299,
-      short: '1440p high-refresh all-rounder',
+      short: 'High-end gaming — 1440p high-refresh',
       chip: 'RTX 5070 Ti · Ryzen 7 · 32GB',
       featured: true,
       warranty: 2,
-      status: 'Balanced Thermal Mode',
+      status: 'Balanced Mode',
       specs: {
         CPU: 'AMD Ryzen 7 9800X3D · 8-core / 16-thread',
         GPU: 'NVIDIA GeForce RTX 5070 Ti · 16GB GDDR7',
         RAM: '32GB DDR5-6000 CL30 (2\u00d716)',
         Storage: '2TB NVMe Gen4',
         Cooling: '240mm AIO',
-        Case: 'JORN Vista · tempered glass',
+        Case: 'JORN Eclipse · tempered glass',
         PSU: '850W ATX 3.1 · 80+ Gold',
         OS: 'Windows 11 Home'
       },
       perf: {
-        tag: 'Balanced Thermal Mode',
+        tag: 'Balanced Mode',
         scale: [330, 210, 110],
         fhd: '~330 FPS', qhd: '~210 FPS', uhd: '~110 FPS',
         bench: 13500
@@ -76,47 +76,17 @@
       components: ['CPU', 'GPU', 'RAM', 'Storage', 'Cooling', 'Case', 'PSU']
     },
     {
-      id: 'jorn-craft',
-      name: 'JORN CRAFT',
-      tierName: 'Creator',
-      tagline: 'Renders, edits and plays. All at once.',
-      accent: '#A79CF0',
-      price: 3299,
-      short: 'Creator rig for heavy workloads',
-      chip: 'RTX 5080 · Ryzen 9 · 64GB',
+      id: 'jorn-core',
+      name: 'JORN CORE',
+      tierName: 'Everyday',
+      tagline: 'Everything you need. Nothing extra.',
+      accent: '#9CC8D9',
+      price: 1299,
+      short: 'Everyday gaming & work — esports ready',
+      chip: 'RTX 5060 · Ryzen 5 · 16GB',
       featured: true,
       warranty: 2,
-      status: 'Creator Mode',
-      specs: {
-        CPU: 'AMD Ryzen 9 9900X · 12-core / 24-thread',
-        GPU: 'NVIDIA GeForce RTX 5080 · 16GB GDDR7',
-        RAM: '64GB DDR5-6000 (2\u00d732)',
-        Storage: '4TB NVMe Gen4 (2\u00d72TB)',
-        Cooling: '360mm AIO',
-        Case: 'JORN Vista · tempered glass',
-        PSU: '1000W ATX 3.1 · 80+ Gold',
-        OS: 'Windows 11 Pro'
-      },
-      perf: {
-        tag: 'Creator Mode',
-        scale: [300, 200, 105],
-        fhd: '~300 FPS', qhd: '~200 FPS', uhd: '~105 FPS',
-        bench: 15200
-      },
-      components: ['CPU', 'GPU', 'RAM', 'Storage', 'Cooling', 'Case', 'PSU']
-    },
-    {
-      id: 'jorn-flux',
-      name: 'JORN FLUX',
-      tierName: 'Value',
-      tagline: 'Everything you actually need. Nothing you don\u2019t.',
-      accent: '#8FCCE0',
-      price: 1299,
-      short: 'Esports-ready 1080p build',
-      chip: 'RTX 5060 · Ryzen 5 · 16GB',
-      featured: false,
-      warranty: 2,
-      status: 'Esports Mode',
+      status: 'Silent Mode',
       specs: {
         CPU: 'AMD Ryzen 5 7600X · 6-core / 12-thread',
         GPU: 'NVIDIA GeForce RTX 5060 · 8GB GDDR7',
@@ -128,7 +98,7 @@
         OS: 'Windows 11 Home'
       },
       perf: {
-        tag: 'Esports Mode',
+        tag: 'Silent Mode',
         scale: [200, 120, 60],
         fhd: '~200 FPS', qhd: '~120 FPS', uhd: '~60 FPS',
         bench: 6800

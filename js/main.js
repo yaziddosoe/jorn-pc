@@ -298,7 +298,7 @@
   function money(n) { return J.money(n); }
 
   /* ---------- PC art (CSS tower) ---------- */
-  var TINTS = { 'jorn-one': '', 'jorn-glide': 'pc--steel', 'jorn-craft': 'pc--violet', 'jorn-flux': 'pc--cyan' };
+  var TINTS = { 'jorn-titan': 'pc--violet', 'jorn-elite': 'pc--cyan', 'jorn-core': 'pc--steel' };
   function pcArt(pc) {
     return '<div class="pc pc--idle ' + (TINTS[pc.id] || '') + '">' +
       '<div class="pc-glass">' +
@@ -646,6 +646,115 @@
       }
     }
   });
+
+  /* ============================================================
+     JORN // REVEAL — scroll-staged unveil (home)
+     ============================================================ */
+  var revealSec = document.getElementById('reveal');
+  if (revealSec) {
+    var rvStage = document.getElementById('revealStage');
+    var rvPc = document.getElementById('revealPc');
+    var rvCta = document.getElementById('revealCta');
+    var rvBar = document.getElementById('rvBar');
+    var rvNum = document.getElementById('rvNum');
+    var rvCap = document.getElementById('rvCap');
+    var rvText = document.getElementById('rvText');
+    var rvRgb = rvStage && rvStage.querySelector('.rv-rgb');
+
+    var CAPS = [
+      ['01', 'The machine'], ['02', 'Rotation'], ['03', 'RGB activation'],
+      ['04', 'Camera in'], ['05', 'Fans spinning'], ['06', 'Under the glass'], ['07', 'Assembled']
+    ];
+    var FOCUS = ['cooler', 'ram', 'gpu', 'fans'];
+    var FNAME = { cooler: 'CPU cooling', ram: 'RAM', gpu: 'GPU', fans: 'RGB fans' };
+
+    function clamp01(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
+    function seg(a, b, t) { return clamp01((t - a) / (b - a)); }
+    function ss(x) { return x * x * (3 - 2 * x); }
+
+    function stageIndex(p) {
+      if (p < 0.08) return 1;
+      if (p < 0.34) return 2;
+      if (p < 0.46) return 3;
+      if (p < 0.60) return 4;
+      if (p < 0.76) return 5;
+      if (p < 0.94) return 6;
+      return 7;
+    }
+
+    function drawReveal(p) {
+      var op = ss(seg(0, 0.05, p));
+      rvStage.style.opacity = String(op);
+      rvStage.style.transition = 'none';
+
+      var rotIn = ss(seg(0.08, 0.32, p));
+      var rotOut = ss(seg(0.90, 0.98, p));
+      var rot = 58 * rotIn - 58 * rotOut;
+
+      var zoomIn = ss(seg(0.46, 0.60, p));
+      var zoomOut = ss(seg(0.92, 1, p));
+      var zoom = 1 + 0.55 * zoomIn - 0.27 * zoomOut;
+
+      var panA = ss(seg(0.74, 0.80, p));
+      var panB = ss(seg(0.90, 0.96, p));
+      var angle = -16 * (panA - panB);
+
+      var t6 = seg(0.76, 0.94, p);
+      var focus = '';
+      var fx = 0;
+      if (t6 > 0 && t6 < 1) {
+        var idx = Math.min(FOCUS.length - 1, Math.floor(t6 * FOCUS.length));
+        focus = FOCUS[idx];
+        var ft = clamp01((t6 * FOCUS.length - idx) / 1);
+        fx = (['-34', '0', '30', '-2'][idx]) * ss(ft);
+      }
+
+      if (rvRgb) rvRgb.style.opacity = String(ss(seg(0.34, 0.46, p)));
+      if (rvPc) rvPc.style.transform = 'translateX(' + fx.toFixed(2) + '%) rotateY(' + (rot + angle).toFixed(2) + 'deg) scale(' + zoom.toFixed(3) + ')';
+      rvStage.setAttribute('data-spin', p >= 0.60 ? '1' : '0');
+      rvStage.setAttribute('data-focus', focus);
+
+      var st = stageIndex(p);
+      if (rvNum) rvNum.textContent = '0' + st;
+      if (rvCap) rvCap.textContent = st === 6 && focus ? 'Inside — ' + FNAME[focus] : CAPS[st - 1][1];
+      if (rvBar) rvBar.style.height = (p * 100).toFixed(1) + '%';
+
+      var on = p >= 0.965;
+      if (rvCta) rvCta.classList.toggle('on', on);
+      if (rvText) rvText.style.opacity = on ? '0' : '1';
+    }
+
+    if (reduced) {
+      if (rvStage) rvStage.classList.add('rv-static');
+      if (rvCta) rvCta.classList.add('on');
+      if (rvText) rvText.style.opacity = '0';
+      if (rvBar) rvBar.style.height = '100%';
+      if (rvPc) rvPc.style.transform = 'scale(1.06)';
+    } else {
+      var rvTop = revealSec.offsetTop;
+      var rvLen = 1;
+      function rvMeasure() {
+        rvTop = revealSec.offsetTop;
+        rvLen = Math.max(1, revealSec.offsetHeight - window.innerHeight);
+      }
+      rvMeasure();
+      var rvRaf = false;
+      function rvOnScroll() {
+        if (rvRaf) return;
+        rvRaf = true;
+        requestAnimationFrame(function () {
+          rvRaf = false;
+          drawReveal(clamp01((window.scrollY - rvTop) / rvLen));
+        });
+      }
+      window.addEventListener('scroll', rvOnScroll, { passive: true });
+      window.addEventListener('resize', function () {
+        rvMeasure();
+        rvOnScroll();
+      }, { passive: true });
+      drawReveal(clamp01((window.scrollY - rvTop) / rvLen));
+    }
+  }
 
   /* ---------- Boot order: render only what exists on this page ---------- */
   storeInit();

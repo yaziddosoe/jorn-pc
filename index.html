@@ -3,15 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>jorn's PC — Custom Gaming PCs, Built to Spec</title>
-  <meta name="description" content="jorn's PC designs and hand-builds custom gaming PCs, sells components and accessories, and repairs hardware. Benchmark-tested and shipped ready.">
+  <title>jorn's PC — Hand-built custom PCs</title>
+  <meta name="description" content="jorn's PC builds hand-assembled machines for gaming and work. Choose a ready-built JORN CORE, ELITE or TITAN, or build your own. Free build queue, 2-year warranty.">
   <meta name="theme-color" content="#003152">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-
-  <meta property="og:title" content="jorn's PC — Custom Gaming PCs, Built to Spec">
-  <meta property="og:description" content="Flagship rigs, a build-your-own configurator and quality accessories — hand-built and tested.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yourusername.github.io/jorn-pc/">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +14,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="p-home">
-  <noscript><style>.preloader{display:none}.reveal,.stagger>*{opacity:1 !important;transform:none !important;filter:none !important}.hero [data-hero],.page-hero [data-hero]{opacity:1 !important;animation:none !important}</style></noscript>
+  <noscript><style>.preloader{display:none}.reveal,.stagger>*{opacity:1 !important;transform:none !important;filter:none !important}.opening [data-hero]{opacity:1 !important;animation:none !important}.rv-cta{opacity:1 !important;pointer-events:auto !important}</style></noscript>
 
   <div class="page-curtain" id="pageCurtain" aria-hidden="true"></div>
 
@@ -54,9 +49,7 @@
           <li><a class="nav-link" href="index.html" data-nav="index">Home</a></li>
           <li><a class="nav-link" href="products.html" data-nav="products">PCs</a></li>
           <li><a class="nav-link" href="build.html" data-nav="build">Build</a></li>
-          <li><a class="nav-link" href="accessories.html" data-nav="accessories">Accessories</a></li>
-          <li><a class="nav-link" href="services.html" data-nav="services">Services</a></li>
-          <li><a class="nav-link" href="about.html" data-nav="about">About</a></li>
+          <li><a class="nav-link" href="accessories.html" data-nav="accessories">Setup</a></li>
         </ul>
         <button class="cart-bar" type="button" aria-label="Open cart">
           <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12zM3 3h3"/><circle cx="9.5" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/></svg>
@@ -69,197 +62,96 @@
 
 <main class="page-entrance">
 
-    <!-- ================= HERO — PRODUCT REVEAL ================= -->
-    <section class="hero hero-stage" data-particles>
-      <div class="container">
-        <div class="hero-copy">
-          <span class="hero-badge" data-hero="1"><span class="dot"></span> Introducing the flagship · JORN ONE</span>
-          <h1 data-hero="2">JORN <span class="text-ice">ONE</span></h1>
-          <div class="hero-specs" data-hero="3">
-            <span class="hero-spec"><span class="led led--cool"></span>RTX 5090</span>
-            <span class="hero-spec"><span class="led led--warm"></span>Ryzen 9 9950X3D</span>
-            <span class="hero-spec"><span class="led led--cool"></span>64GB DDR5-6000</span>
-            <span class="hero-spec"><span class="led led--warm"></span>4TB NVMe Gen4</span>
-          </div>
-          <p class="lead" data-hero="4">Hand-built around one idea: no compromises on the frames, the finish or the feel. Benchmarked, burned in for 24 hours and delivered ready to drop in.</p>
-          <div class="hero-ctas" data-hero="5">
-            <a class="btn btn--lg" href="product.html?id=jorn-one">View JORN ONE <span class="arrow">→</span></a>
-            <a class="btn btn--ghost btn--lg" href="products.html">Shop all builds</a>
-          </div>
-          <ul class="hero-trust" data-hero="6">
-            <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.5 8-9V5l-8-3-8 3v8c0 5.5 8 9 8 9z"/></svg>
-              Free diagnostics
-            </li>
-            <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.5 8-9V5l-8-3-8 3v8c0 5.5 8 9 8 9z"/><path d="M9 12l2 2 4-4"/></svg>
-              2-year warranty
-            </li>
-            <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h13v13H1zM14 8h4l4 4v4h-8zM5 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
-              Safe shipping anywhere
-            </li>
-          </ul>
+  <!-- ================= Opening screen ================= -->
+  <section class="opening" id="opening">
+    <div class="op-inner">
+      <span class="op-stamp">Built in-house · everywhere</span>
+      <div class="op-logo">
+        <svg viewBox="0 0 48 48" width="46" height="46" aria-hidden="true">
+          <rect x="2" y="2" width="44" height="44" rx="12" fill="#003152" stroke="#ADDFF1" stroke-opacity="0.35" stroke-width="2"/>
+          <rect x="11" y="13" width="26" height="5" rx="2.5" fill="#ADDFF1"/>
+          <rect x="29" y="13" width="5" height="18" rx="2.5" fill="#ADDFF1"/>
+          <rect x="11" y="31" width="22" height="5" rx="2.5" fill="#5FC6EC"/>
+        </svg>
+        <span class="op-logo-text">JORN<b>'s</b> PC</span>
+      </div>
+      <h1 class="op-title">Built<span>Different.</span></h1>
+      <p class="op-line">Hand-built PCs, honest repairs, zero fluff. Benchmark-tested before they leave the bench.</p>
+      <div class="op-actions">
+        <a class="btn btn--lg" href="#machines">Explore PCs</a>
+        <a class="btn btn--lg btn--ghost" href="build.html">Build Yours</a>
+      </div>
+    </div>
+    <a class="op-scroll" href="#machines"><span></span>scroll</a>
+  </section>
+
+  <!-- ================= Choose Your Machine ================= -->
+  <section class="machines" id="machines">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Choose Your Machine</span>
+        <h2>Three builds. No noise.</h2>
+        <p class="sec-join">Every JORN is hand-assembled, benchmarked and shipped with a 2-year warranty. Hover a machine to wake its lighting — pick your tier.</p>
+      </div>
+      <div class="store-grid stagger" id="storeHome"></div>
+    </div>
+  </section>
+
+  <!-- ================= JORN // REVEAL ================= -->
+  <section class="reveal" id="reveal" aria-label="JORN Reveal">
+    <div class="reveal-sticky">
+      <div class="reveal-head" aria-hidden="true">
+        <span class="rv-eyebrow">REVEAL</span>
+        <p>Performance, unveiled.</p>
+      </div>
+
+      <div class="reveal-stage" id="revealStage" aria-hidden="true">
+        <div class="rv-text" id="rvText">
+          <div class="rv-num" id="rvNum">01</div>
+          <div class="rv-cap" id="rvCap">The machine</div>
         </div>
 
-        <div class="hero-visual parallax" data-hero="7">
-          <div class="spotlight" aria-hidden="true"></div>
-          <div class="pc-stage">
-            <div class="pc">
-              <div class="pc-glass">
-                <span class="fan fan-a"></span>
-                <span class="fan fan-b"></span>
-                <div class="cooler"><span></span></div>
-                <div class="ram"><i></i><i></i><i></i><i></i></div>
-                <span class="fan fan-c"></span>
-              </div>
-              <div class="pc-rgb"></div>
+        <div class="rv-pc" id="revealPc">
+          <div class="rv-glow"></div>
+          <div class="rv-case">
+            <div class="rv-inner">
+              <span class="rven-fan rv-fan--top"><i class="blade"></i></span>
+              <div class="rv-cooler"><span class="rven-fan"><i class="blade"></i></span></div>
+              <div class="rv-ram"><i></i><i></i><i></i><i></i></div>
+              <div class="rv-gpu"></div>
+              <span class="rven-fan rv-fan--high"><i class="blade"></i></span>
+              <span class="rven-fan rv-fan--low"><i class="blade"></i></span>
             </div>
-            <div class="chip chip-cpu"><span class="ic"></span>CPU<span><b>Ryzen 9 · 32 threads</b></span></div>
-            <div class="chip chip-gpu">GPU<b>RTX 5090 · 32GB</b></div>
-            <div class="chip chip-ssd">SSD<b>4TB · NVMe Gen4</b></div>
+            <div class="rv-rgb"></div>
+            <div class="rv-glass"></div>
           </div>
-          <div class="rgb-trail" aria-hidden="true"></div>
+          <div class="rv-scan"></div>
+          <span class="rv-focus rv-focus--cooler" data-focus="cooler"></span>
+          <span class="rv-focus rv-focus--ram" data-focus="ram"></span>
+          <span class="rv-focus rv-focus--gpu" data-focus="gpu"></span>
+          <span class="rv-focus rv-focus--fans" data-focus="fans"></span>
+        </div>
+
+        <div class="rv-label-chip rv-chip-cooler" data-chip="cooler">CPU cooling</div>
+        <div class="rv-label-chip rv-chip-ram" data-chip="ram">RAM</div>
+        <div class="rv-label-chip rv-chip-gpu" data-chip="gpu">GPU</div>
+        <div class="rv-label-chip rv-chip-fans" data-chip="fans">RGB cooling fans</div>
+      </div>
+
+      <div class="rv-cta" id="revealCta">
+        <h2>Ready to build yours?</h2>
+        <p>Pick the parts, we handle the rest.</p>
+        <div class="op-actions" style="justify-content:center;">
+          <a class="btn btn--lg" href="build.html">Build Your PC</a>
+          <a class="btn btn--lg btn--ghost" href="products.html">Browse the lineup</a>
         </div>
       </div>
-    </section>
 
-    <!-- ================= FEATURED PCs ================= -->
-    <section class="section">
-      <div class="container">
-        <div class="shop-head reveal">
-          <div>
-            <span class="eyebrow">Ready-built</span>
-            <h2>The lineup</h2>
-            <p>Four machines we know inside out — specced, benched and trusted. Every one can be tweaked to your exact taste.</p>
-          </div>
-          <a class="btn btn--ghost" href="products.html">View all PCs <span class="arrow">→</span></a>
-        </div>
-        <div class="store-grid stagger" id="storeHome"></div>
-      </div>
-    </section>
+      <div class="rv-progress" aria-hidden="true"><i id="rvBar"></i></div>
+    </div>
+  </section>
 
-    <!-- ================= WHY JORN (short) ================= -->
-    <section class="section section--tint">
-      <div class="container split">
-        <div class="reveal">
-          <span class="eyebrow">Why JORN PC</span>
-          <h2>Built like it's <span class="text-ice">our own machine.</span></h2>
-          <p class="lead" style="margin-top:18px;">Anyone can screw parts together. We assembly, wire, benchmark and burn-in every rig — then stand behind it with a 2-year warranty and lifetime support.</p>
-          <ul class="feature-list">
-            <li>
-              <span class="feature-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>
-              <div><b>25-point hand test</b><span>Benchmarked and temperature-tested for 24 hours before it ships.</span></div>
-            </li>
-            <li>
-              <span class="feature-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>
-              <div><b>Honest pricing</b><span>Transparent quotes with zero upselling. If a cheaper part fits, we say so.</span></div>
-            </li>
-            <li>
-              <span class="feature-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>
-              <div><b>Genuine parts only</b><span>Everything sourced from official distributors with full manufacturer warranty.</span></div>
-            </li>
-          </ul>
-        </div>
-        <div class="panel-art reveal">
-          <span class="eyebrow"><span class="led led--cool" style="display:inline-block;margin-right:10px;"></span>Bench status</span>
-          <h3>The final 24 hours before shipping</h3>
-          <div class="mini-parts" data-on>
-            <div class="part"><span class="bar" style="--p:.42"></span><span class="lbl">Bench</span></div>
-            <div class="part"><span class="bar" style="--p:.68"></span><span class="lbl">Thermals</span></div>
-            <div class="part"><span class="bar" style="--p:.86"></span><span class="lbl">Stability</span></div>
-            <div class="part"><span class="bar" style="--p:1"></span><span class="lbl">Ship</span></div>
-          </div>
-          <div class="stat-mini">
-            <div class="sm"><b data-count="24" data-suffix="h">24h</b><span>Burn-in test</span></div>
-            <div class="sm"><b data-count="490" data-suffix="+">490+</b><span>Max FPS</span></div>
-            <div class="sm"><b data-count="25" data-suffix="+">25+</b><span>Checkpoints</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= ACCESSORIES TEASER ================= -->
-    <section class="section">
-      <div class="container">
-        <div class="shop-head reveal">
-          <div>
-            <span class="eyebrow">Complete the setup</span>
-            <h2>Accessories that match the machine</h2>
-            <p>Keyboards, mice, monitors, headsets, mousepads and RGB gear — filtered, specced and cart-ready.</p>
-          </div>
-          <a class="btn btn--ghost" href="accessories.html">Browse everything <span class="arrow">→</span></a>
-        </div>
-        <div class="showcase-grid stagger">
-          <a class="showcase-item reveal" href="accessories.html">
-            <span class="sc-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18v8h-4l-2 3h-6l-2-3H3z"/></svg>
-            </span>
-            <span><b>Keyboards</b><span>Mechanical, hot-swap, clamp pad</span></span>
-            <span class="rgb-trail" aria-hidden="true"></span>
-          </a>
-          <a class="showcase-item reveal" href="accessories.html">
-            <span class="sc-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v10H4zM8 19h8M12 15v4M6 15v-4a7 7 0 0 1 12 0v4"/></svg>
-            </span>
-            <span><b>Monitors</b><span>240Hz+ IPS, 4K and OLED</span></span>
-            <span class="rgb-trail" aria-hidden="true"></span>
-          </a>
-          <a class="showcase-item reveal" href="build.html">
-            <span class="sc-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 0 0-6.4 6.4L3 18l3 3 5.3-5.3a4.5 4.5 0 0 0 6.4-6.4l-2.6 2.6-2.4-.7-.7-2.4 2.7-2.5z"/></svg>
-            </span>
-            <span><b>Build your own</b><span>Pick parts, watch the total update</span></span>
-            <span class="rgb-trail" aria-hidden="true"></span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= FAQ ================= -->
-    <section class="section section--tint">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Quick answers</span>
-          <h2>Before you ask</h2>
-        </div>
-        <div class="faq-list stagger">
-          <details class="faq-item" open>
-            <summary>How long does a custom build take?<span class="fi">+</span></summary>
-            <div class="faq-body">Ready-built PCs in our lineup ship fast. Bespoke builds are typically done in 5–10 working days including the 24-hour burn-in test.</div>
-          </details>
-          <details class="faq-item">
-            <summary>Do PCs ship fully built and tested?<span class="fi">+</span></summary>
-            <div class="faq-body">Yes. Every rig is assembled, cable-managed, benchmarked and stress-tested before it leaves. It arrives ready to plug in and play.</div>
-          </details>
-          <details class="faq-item">
-            <summary>Can I upgrade parts later?<span class="fi">+</span></summary>
-            <div class="faq-body">Absolutely. If you bought the PC from us, bring it back any time — we'll upgrade storage, RAM, GPU or cooling and re-test the whole machine.</div>
-          </details>
-          <details class="faq-item">
-            <summary>What does the 2-year warranty cover?<span class="fi">+</span></summary>
-            <div class="faq-body">Parts and labour for any hardware failure, plus free diagnostics for the life of the machine. Damage from misuse or physical trauma is not covered.</div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= CTA ================= -->
-    <section class="section">
-      <div class="container">
-        <div class="cta-band reveal">
-          <span class="eyebrow">Time to decide</span>
-          <h2>Let's build the machine you keep telling yourself you'll get.</h2>
-          <p>Configure it yourself in two minutes, or talk to us and we'll spec it around your games and your budget.</p>
-          <div class="hero-ctas" style="justify-content:center;margin-bottom:0;">
-            <a class="btn btn--lg" href="build.html">Configure your rig <span class="arrow">→</span></a>
-            <a class="btn btn--ghost btn--lg" href="contact.html">Talk to us</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
+</main>
 
   <footer class="site-footer">
     <div class="container">
@@ -274,7 +166,7 @@
             </svg>
             <span>jorn<span class="brand-amp">'s</span>&nbsp;PC</span>
           </a>
-          <p>Hand-built custom gaming PCs, honest repairs and quality components — engineered for dream setups.</p>
+          <p>JORN is a small workshop with one obsession: PCs that just work. Every machine is hand-built, benchmarked and backed by a 2-year warranty.</p>
           <div class="footer-badges">
             <span class="footer-badge hot">2-year warranty</span>
             <span class="footer-badge">Free diagnostics</span>
@@ -287,18 +179,16 @@
           <ul>
             <li><a href="products.html">Ready-built PCs</a></li>
             <li><a href="build.html">Build your own</a></li>
-            <li><a href="accessories.html">Accessories</a></li>
-            <li><a href="services.html">Repairs &amp; upgrades</a></li>
+            <li><a href="accessories.html">Setup &amp; accessories</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Company</h4>
+          <h4>Support</h4>
           <ul>
-            <li><a href="about.html">About JORN PC</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="contact.html">Bespoke requests</a></li>
+            <li><a href="services.html">Repairs &amp; upgrades</a></li>
             <li><a href="services.html">Warranty &amp; bench tests</a></li>
+            <li><a href="contact.html">Contact us</a></li>
           </ul>
         </div>
 
