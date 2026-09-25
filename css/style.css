@@ -1394,3 +1394,91 @@ body.body--locked{ overflow:hidden; }
 
 .sec-head{ max-width:720px; margin-bottom:44px; }
 .sec-head h2{ margin-top:10px; letter-spacing:-.01em; }
+
+/* ============================================================
+   v3.5 — real photos, fail-safes, alive-premium look
+   ============================================================ */
+
+/* Preloader: CSS-only auto-hide so a page can never be stuck blank even if JS dies */
+.preloader{ animation:preloaderOut .55s ease 4.4s forwards; }
+@keyframes preloaderOut{ to{ opacity:0; visibility:hidden; } }
+
+/* ---------- Machine photos (store cards) ---------- */
+.store-visual{ padding:0; height:clamp(210px, 27vw, 275px); }
+.store-visual .shot{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  transform:scale(1.04); transition:transform .9s cubic-bezier(.16,1,.3,1), filter .5s ease;
+  will-change:transform;
+}
+.store-card:hover .store-visual .shot{ transform:scale(1.1); }
+.store-visual::before{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none; mix-blend-mode:screen;
+  background:radial-gradient(120% 95% at 50% 112%, var(--acc,#ADDFF1), transparent 62%);
+  opacity:0; transition:opacity .5s ease;
+}
+.store-card:hover .store-visual::before{ opacity:.55; }
+.store-visual::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:linear-gradient(180deg, rgba(3,8,14,.05) 34%, rgba(3,8,14,.78));
+}
+.store-card .card-pill{ z-index:3; }
+.store-card .price-tag{ z-index:3; }
+
+/* ---------- Product detail photo ---------- */
+.pd-stage{ padding:0; }
+.pd-stage .shot{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.pd-stage::after{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:linear-gradient(180deg, rgba(3,8,14,.22), rgba(3,8,14,.44) 55%, rgba(3,8,14,.68));
+}
+.pd-glow{ z-index:1; }
+.pd-stage .chip{ z-index:2; }
+
+/* ---------- Opening screen: hero photo split ---------- */
+.op-grid{
+  position:relative; z-index:1; width:min(1180px,94%); margin-inline:auto;
+  display:grid; grid-template-columns:1.04fr .96fr; gap:clamp(32px,5vw,72px); align-items:center;
+  padding:110px 0 130px;
+}
+.op-inner{ z-index:1; text-align:left; padding:0; max-width:620px; }
+.op-inner .op-line{ margin:0 0 30px; }
+.op-actions{ justify-content:flex-start; }
+.op-stage{
+  position:relative; border-radius:26px; border:1px solid rgba(173,223,241,.18);
+  box-shadow:0 70px 120px -40px rgba(0,0,0,.9), 0 0 110px -30px var(--glow);
+  overflow:hidden; aspect-ratio:3/2;
+}
+.op-stage::before{
+  content:""; position:absolute; inset:-14%; z-index:0; pointer-events:none;
+  background:radial-gradient(55% 55% at 62% 46%, rgba(76,215,246,.35), transparent 70%);
+  filter:blur(34px);
+}
+.op-hero-drift{ position:absolute; inset:0; animation:opDrift 22s ease-in-out infinite alternate; }
+.op-hero{ width:100%; height:100%; object-fit:cover; opacity:0; animation:opIn 1.1s cubic-bezier(.16,1,.3,1) .25s forwards; }
+.op-tint{ position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(180deg, rgba(3,8,14,.12), rgba(3,8,14,.18) 60%, rgba(3,8,14,.6)); }
+.op-hero-chip{
+  position:absolute; left:18px; bottom:60px; z-index:3;
+  font-family:var(--font-head); font-size:.66rem; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--ice); background:rgba(5,12,18,.72); border:1px solid rgba(173,223,241,.25);
+  padding:8px 14px; border-radius:999px;
+}
+.op-hero-caption{ position:absolute; right:18px; bottom:16px; z-index:3; font-size:.78rem; color:var(--ice-soft); }
+@keyframes opDrift{ from{ transform:scale(1) translate(0,0); } to{ transform:scale(1.09) translate(-1.5%, -1%); } }
+@keyframes opIn{ from{ opacity:0; } to{ opacity:1; } }
+
+/* ---------- Reveal: photo machine ---------- */
+.rv-shot{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.reveal-stage[data-focus] .rv-inner{ filter:brightness(.5); transition:filter .25s linear; }
+
+@media (max-width:900px){
+  .op-grid{ grid-template-columns:1fr; padding-top:118px; }
+  .op-inner{ text-align:center; margin-inline:auto; }
+  .op-inner .op-line{ margin-inline:auto; }
+  .op-actions{ justify-content:center; }
+  .op-stage{ width:min(520px,92%); margin-inline:auto; }
+}
+
+/* Reduced motion: never let the preloader sit over the page for the full 4.4s */
+@media (prefers-reduced-motion: reduce){
+  .preloader{ animation:preloaderOut .01s linear 0s forwards; }
+}

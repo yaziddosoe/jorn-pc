@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="p-home">
-  <noscript><style>.preloader{display:none}.reveal,.stagger>*{opacity:1 !important;transform:none !important;filter:none !important}.opening [data-hero]{opacity:1 !important;animation:none !important}.rv-cta{opacity:1 !important;pointer-events:auto !important}</style></noscript>
+  <noscript><style>.preloader{display:none}.reveal,.stagger>*{opacity:1 !important;transform:none !important;filter:none !important}.opening [data-hero]{opacity:1 !important;animation:none !important}.reveal-stage{opacity:1 !important}.rv-cta{opacity:1 !important;pointer-events:auto !important}.op-hero{opacity:1 !important;animation:none !important}</style></noscript>
 
   <div class="page-curtain" id="pageCurtain" aria-hidden="true"></div>
 
@@ -64,22 +64,30 @@
 
   <!-- ================= Opening screen ================= -->
   <section class="opening" id="opening">
-    <div class="op-inner">
-      <span class="op-stamp">Built in-house · everywhere</span>
-      <div class="op-logo">
-        <svg viewBox="0 0 48 48" width="46" height="46" aria-hidden="true">
-          <rect x="2" y="2" width="44" height="44" rx="12" fill="#003152" stroke="#ADDFF1" stroke-opacity="0.35" stroke-width="2"/>
-          <rect x="11" y="13" width="26" height="5" rx="2.5" fill="#ADDFF1"/>
-          <rect x="29" y="13" width="5" height="18" rx="2.5" fill="#ADDFF1"/>
-          <rect x="11" y="31" width="22" height="5" rx="2.5" fill="#5FC6EC"/>
-        </svg>
-        <span class="op-logo-text">JORN<b>'s</b> PC</span>
+    <div class="op-grid">
+      <div class="op-inner">
+        <span class="op-stamp">Built in-house · everywhere</span>
+        <div class="op-logo">
+          <svg viewBox="0 0 48 48" width="46" height="46" aria-hidden="true">
+            <rect x="2" y="2" width="44" height="44" rx="12" fill="#003152" stroke="#ADDFF1" stroke-opacity="0.35" stroke-width="2"/>
+            <rect x="11" y="13" width="26" height="5" rx="2.5" fill="#ADDFF1"/>
+            <rect x="29" y="13" width="5" height="18" rx="2.5" fill="#ADDFF1"/>
+            <rect x="11" y="31" width="22" height="5" rx="2.5" fill="#5FC6EC"/>
+          </svg>
+          <span class="op-logo-text">JORN<b>'s</b> PC</span>
+        </div>
+        <h1 class="op-title">Built<span>Different.</span></h1>
+        <p class="op-line">Hand-built PCs, honest repairs, zero fluff. Benchmark-tested before they leave the bench.</p>
+        <div class="op-actions">
+          <a class="btn btn--lg" href="#machines">Explore PCs</a>
+          <a class="btn btn--lg btn--ghost" href="build.html">Build Yours</a>
+        </div>
       </div>
-      <h1 class="op-title">Built<span>Different.</span></h1>
-      <p class="op-line">Hand-built PCs, honest repairs, zero fluff. Benchmark-tested before they leave the bench.</p>
-      <div class="op-actions">
-        <a class="btn btn--lg" href="#machines">Explore PCs</a>
-        <a class="btn btn--lg btn--ghost" href="build.html">Build Yours</a>
+      <div class="op-stage" aria-hidden="true">
+        <div class="op-hero-drift"><img class="op-hero" src="assets/pcs/hero.jpg" alt="" width="1000" height="667"></div>
+        <div class="op-tint"></div>
+        <span class="op-hero-chip">Flagship · RGB-synced</span>
+        <span class="op-hero-caption">Every machine hand-built &amp; benchmarked</span>
       </div>
     </div>
     <a class="op-scroll" href="#machines"><span></span>scroll</a>
@@ -91,7 +99,7 @@
       <div class="sec-head reveal">
         <span class="eyebrow">Choose Your Machine</span>
         <h2>Three builds. No noise.</h2>
-        <p class="sec-join">Every JORN is hand-assembled, benchmarked and shipped with a 2-year warranty. Hover a machine to wake its lighting — pick your tier.</p>
+        <p class="sec-join">Every JORN is hand-assembled, benchmarked and shipped with a 2-year warranty. Hover a machine to wake the glow — pick your tier.</p>
       </div>
       <div class="store-grid stagger" id="storeHome"></div>
     </div>
@@ -115,12 +123,7 @@
           <div class="rv-glow"></div>
           <div class="rv-case">
             <div class="rv-inner">
-              <span class="rven-fan rv-fan--top"><i class="blade"></i></span>
-              <div class="rv-cooler"><span class="rven-fan"><i class="blade"></i></span></div>
-              <div class="rv-ram"><i></i><i></i><i></i><i></i></div>
-              <div class="rv-gpu"></div>
-              <span class="rven-fan rv-fan--high"><i class="blade"></i></span>
-              <span class="rven-fan rv-fan--low"><i class="blade"></i></span>
+              <img class="rv-shot" src="assets/pcs/reveal.jpg" alt="Inside a JORN build — cooling, memory and GPU in RGB glow" width="1000" height="667" loading="lazy">
             </div>
             <div class="rv-rgb"></div>
             <div class="rv-glass"></div>

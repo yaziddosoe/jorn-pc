@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reduced = (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) || false;
   var J = window.JORN;
 
   function sessGet(k) { try { return sessionStorage.getItem(k) === '1'; } catch (e) { return false; } }
@@ -297,27 +297,22 @@
   }
   function money(n) { return J.money(n); }
 
-  /* ---------- PC art (CSS tower) ---------- */
-  var TINTS = { 'jorn-titan': 'pc--violet', 'jorn-elite': 'pc--cyan', 'jorn-core': 'pc--steel' };
-  function pcArt(pc) {
-    return '<div class="pc pc--idle ' + (TINTS[pc.id] || '') + '">' +
-      '<div class="pc-glass">' +
-      '<span class="fan fan-a" aria-hidden="true"></span>' +
-      '<span class="fan fan-b" aria-hidden="true"></span>' +
-      '<div class="cooler" aria-hidden="true"><span></span></div>' +
-      '<div class="ram" aria-hidden="true"><i></i><i></i><i></i><i></i></div>' +
-      '<span class="fan fan-c" aria-hidden="true"></span>' +
-      '</div>' +
-      '<div class="pc-rgb" aria-hidden="true"></div>' +
-      '</div>';
+  /* ---------- Machine photos (real photography, bundled locally) ---------- */
+  var SHOTS = {
+    'jorn-titan': 'assets/pcs/titan.jpg',
+    'jorn-elite': 'assets/pcs/elite.jpg',
+    'jorn-core': 'assets/pcs/core.jpg'
+  };
+  function machineArt(pc, eager) {
+    return '<img class="shot" src="' + (SHOTS[pc.id] || 'assets/pcs/hero.jpg') + '" alt="' + esc(pc.name) + '"' + (eager ? '' : ' loading="lazy"') + '>';
   }
 
   /* ---------- Store cards ---------- */
   function renderPCard(pc) {
-    return '<article class="store-card" data-id="' + esc(pc.id) + '">' +
+    return '<article class="store-card" data-id="' + esc(pc.id) + '" style="--acc:' + esc(pc.accent) + '">' +
       '<div class="store-visual">' +
       '<span class="card-pill">' + esc(pc.tierName) + '</span>' +
-      pcArt(pc) +
+      machineArt(pc) +
       '<span class="price-tag">' + money(pc.price) + '</span>' +
       '</div>' +
       '<div class="store-body">' +
@@ -423,7 +418,7 @@
     setText('pdBench', pc.perf.bench.toLocaleString('en-US'));
     setText('pdPerfTag', pc.status);
 
-    wanted.insertAdjacentHTML('afterbegin', chipMarkup(pc) + pcArt(pc));
+    wanted.insertAdjacentHTML('afterbegin', machineArt(pc, true) + chipMarkup(pc));
 
     function fill(id, val, den) {
       var bar = document.getElementById(id);
@@ -551,9 +546,9 @@
         });
       });
       if (totalEl) totalEl.textContent = money(total);
-      if (noteEl) noteEl.textContent = count === 7 ? 'All 7 parts picked \u2014 free shipping on checkout' : (count + ' of 7 parts selected');
+      if (noteEl) noteEl.textContent = count === cats.length ? ('All ' + cats.length + ' parts picked \u2014 free shipping on checkout') : (count + ' of ' + cats.length + ' parts selected');
       if (cdDiagram) {
-        cdDiagram.classList.toggle('full', count === 7);
+        cdDiagram.classList.toggle('full', count >= 6);
         cdDiagram.querySelectorAll('.cd-slot').forEach(function (sl) {
           sl.classList.toggle('on', !!state[cats[+sl.getAttribute('data-idx')].key]);
         });
@@ -601,8 +596,8 @@
 
     if (bAdd) bAdd.addEventListener('click', function () {
       var built = items().filter(function (s) { return s.item; });
-      if (built.length < 7) {
-        J.cart.toast('Pick all 7 parts first');
+      if (built.length < cats.length) {
+        J.cart.toast('Pick all ' + cats.length + ' parts first');
         return;
       }
       var cpu = built.filter(function (s) { return s.catKey === 'cpu'; })[0];
@@ -652,6 +647,7 @@
      ============================================================ */
   var revealSec = document.getElementById('reveal');
   if (revealSec) {
+    try {
     var rvStage = document.getElementById('revealStage');
     var rvPc = document.getElementById('revealPc');
     var rvCta = document.getElementById('revealCta');
@@ -683,6 +679,7 @@
     }
 
     function drawReveal(p) {
+      if (!rvStage) return;
       var op = ss(seg(0, 0.05, p));
       rvStage.style.opacity = String(op);
       rvStage.style.transition = 'none';
@@ -754,11 +751,16 @@
       }, { passive: true });
       drawReveal(clamp01((window.scrollY - rvTop) / rvLen));
     }
+    } catch (err) {
+      if (rvStage) rvStage.classList.add('rv-static');
+    }
   }
 
   /* ---------- Boot order: render only what exists on this page ---------- */
-  storeInit();
-  productInit();
-  builderInit();
-  accessoriesInit();
+  [storeInit, productInit, builderInit, accessoriesInit].forEach(function (fn) {
+    try { fn(); }
+    catch (err) {
+      if (typeof console !== 'undefined' && console.warn) console.warn('jorn init skipped:', err && err.message);
+    }
+  });
 })();

@@ -8,10 +8,10 @@ A fast, animation-rich, mobile-friendly shop built with **plain HTML / CSS / Jav
 
 | Experience | Path | What's on it |
 |---|---|---|
-| Home | `index.html` | **Opening screen** ("Built Different." → Explore PCs / Build Yours) → **Choose Your Machine** (JORN CORE / ELITE / TITAN; hovering wakes the RGB) → **`JORN // REVEAL`** — a scroll-staged unveil: the machine appears in the dark, rotates, RGB fires up, the camera zooms in past spinning cooling fans, down to the GPU / RAM / CPU cooler, then pulls back to "Ready to build yours?" |
+| Home | `index.html` | **Opening screen** ("Built Different." → Explore PCs / Build Yours) with a drifting machine photo → **Choose Your Machine** (JORN CORE / ELITE / TITAN; hovering wakes the glow over each machine's photo) → **`JORN // REVEAL`** — a scroll-staged unveil: the machine photo appears in the dark, RGB fires up, the camera sweeps over the build, then pulls back to "Ready to build yours?" |
 | PCs | `products.html` | All three ready-built machines with live "Add to cart" |
-| Product detail | `product.html?id=jorn-titan` (also `jorn-elite`, `jorn-core`) | Spec chips over CSS PC art, performance bars (FHD/QHD/4K + bench), clicking a spec row highlights the matching part, quantity stepper, Add to cart / Buy now, related Setup gear |
-| Build | `build.html` | Interactive **Build Your PC** configurator — pick all 7 parts (CPU → PSU), live total, case diagram that lights up, parts manifest, add the config to cart |
+| Product detail | `product.html?id=jorn-titan` (also `jorn-elite`, `jorn-core`) | Spec chips over a real machine photo, performance bars (FHD/QHD/4K + bench), clicking a spec row highlights the matching part, quantity stepper, Add to cart / Buy now, related Setup gear |
+| Build | `build.html` | Interactive **Build Your PC** configurator — pick all 8 parts across 8 categories (~85 options, CPU → PSU incl. motherboard), live total, case diagram that lights up, parts manifest, add the config to cart |
 | Setup | `accessories.html` | Monitors / keyboards / mice / headsets / mousepads / RGB &amp; desk — filterable, add to cart |
 | Cart | `js/cart.js` (drawer on every page) | Persistent drawer + count badge + `localStorage` + itemised `mailto:` checkout |
 
@@ -26,14 +26,21 @@ About JORN lives in the footer (a short blurb + badge row). Services &amp; conta
 
 ## Data
 
-All products, parts and accessories live in `js/data.js` (`window.JORN`). Edit prices/specs and the pages render themselves. Cart engine is `js/cart.js`; page wiring incl. the reveal driver is `js/main.js`. Machine tiers: **CORE** ($1,299), **ELITE** ($2,299), **TITAN** ($4,299).
+All products, parts and accessories live in `js/data.js` (`window.JORN`). Edit prices/specs and the pages render themselves. Cart engine is `js/cart.js`; page wiring incl. the reveal driver is `js/main.js`. Machine photos (royalty-free, bundled locally in `assets/pcs/`) drive the store cards, product pages, opening hero and reveal. Machine tiers: **CORE** ($1,299), **ELITE** ($2,299), **TITAN** ($4,299). Builder catalog: **8 categories, ~85 parts** (CPU / GPU / RAM / storage / cooling / case / PSU / motherboard) + 4 one-click presets.
+
+## Fail-safe (no more blank pages)
+
+- The preloader now also **hides itself with a pure-CSS animation** (`preloaderOut`, 4.4s delay) — even if all JS fails, content is never stuck underneath it.
+- Each page module in `main.js` boots inside its own `try/catch`, so one failure can't blank the whole app.
+- The reveal stage fails open to a static showcase, and the `<noscript>` style block force-shows all sections with JS off.
+- `window.matchMedia` is guarded so older browsers can't throw at the top of `main.js`.
 
 ## Animations
 
 - **Page-switch hop curtain** — azure curtain hops in/out on every navigation
-- **Loader v2** — logo, progress bar, cycling status text ("Booting systems" → "Final checks"), skipped on repeat visits
-- **`JORN // REVEAL`** — scroll-driven staging on the home page: opacity-in → `rotateY` sweep → RGB glow-up → zoom → spinning fan blades → glass-panel interior with focus rings on CPU cooling / RAM / GPU / fans → pull-back into "Ready to build yours?"
-- Blur-to-sharp reveals, GPU-cheap `transform`/`opacity`-only animation, particles paused off-screen, hover RGB reaction on PC cards
+- **Loader v2** — logo, progress bar, cycling status text ("Booting systems" → "Final checks"), skipped on repeat visits; CSS fail-safe auto-hide (see above)
+- **`JORN // REVEAL`** — scroll-driven staging on the home page: opacity-in → RGB glow-up → camera sweep over the machine photo → pull-back into "Ready to build yours?"
+- Blur-to-sharp reveals, GPU-cheap `transform`/`opacity`-only animation, particles paused off-screen, hover glow reaction and photo zoom on PC cards, ambient drifting hero photo on the opening screen
 - Respects `prefers-reduced-motion` (reveal collapses into a static showcase + CTA)
 
 ## Performance notes
