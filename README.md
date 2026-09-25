@@ -41,6 +41,7 @@ All products, parts and accessories live in `js/data.js` (`window.JORN`). Edit p
 - **Loader v2** — logo, progress bar, cycling status text ("Booting systems" → "Final checks"), skipped on repeat visits; CSS fail-safe auto-hide (see above)
 - **`JORN // REVEAL`** — scroll-driven staging on the home page: opacity-in → RGB glow-up → camera sweep over the machine photo → pull-back into "Ready to build yours?"
 - Blur-to-sharp reveals, GPU-cheap `transform`/`opacity`-only animation, particles paused off-screen, hover glow reaction and photo zoom on PC cards, ambient drifting hero photo on the opening screen
+- **Alive scrolling** — a fixed ambient light field (slow-drifting glow orbs) so no scroll position is ever flat black, a top hairline showing page scroll progress, scroll-linked drift on the machine cards, and a specs ticker marquee under the machine grid. The reveal backdrop drifts light beams and rising motes while you scroll (all compositor-only)
 - Respects `prefers-reduced-motion` (reveal collapses into a static showcase + CTA)
 
 ## Performance notes

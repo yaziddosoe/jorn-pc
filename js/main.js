@@ -756,8 +756,35 @@
     }
   }
 
+  /* ---------- Scroll progress hairline + machine-card drift (home) ---------- */
+  function scrollScenery() {
+    var bar = document.getElementById('scrollBar');
+    var visuals = Array.prototype.slice.call(document.querySelectorAll('.machines .store-visual'));
+    if (!bar && visuals.length === 0) return;
+    var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    var pending = false;
+    function paint() {
+      pending = false;
+      var y = window.scrollY;
+      var p = Math.min(1, Math.max(0, y / max));
+      if (bar) bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+      if (!reduced) {
+        for (var i = 0; i < visuals.length; i++) {
+          var r = visuals[i].getBoundingClientRect();
+          if (r.bottom > 0 && r.top < window.innerHeight) {
+            var s = Math.min(1, Math.max(0, (window.innerHeight - r.top) / (window.innerHeight + r.height)));
+            visuals[i].style.transform = 'translateY(' + ((s - 0.5) * 14).toFixed(1) + 'px)';
+          }
+        }
+      }
+    }
+    window.addEventListener('scroll', function () { if (!pending) { pending = true; requestAnimationFrame(paint); } }, { passive: true });
+    window.addEventListener('resize', function () { max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight); paint(); }, { passive: true });
+    paint();
+  }
+
   /* ---------- Boot order: render only what exists on this page ---------- */
-  [storeInit, productInit, builderInit, accessoriesInit].forEach(function (fn) {
+  [scrollScenery, storeInit, productInit, builderInit, accessoriesInit].forEach(function (fn) {
     try { fn(); }
     catch (err) {
       if (typeof console !== 'undefined' && console.warn) console.warn('jorn init skipped:', err && err.message);

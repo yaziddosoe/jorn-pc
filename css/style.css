@@ -1226,10 +1226,10 @@ body.body--locked{ overflow:hidden; }
 /* ============================================================
    JORN // REVEAL � scroll-staged flythrough
    ============================================================ */
-.reveal{ position:relative; height:680vh; background:#030407; }
+.reveal{ position:relative; height:480vh; background:transparent; }
 .reveal-sticky{
   position:sticky; top:0; height:100vh; overflow:hidden;
-  background:radial-gradient(58% 46% at 50% 46%, #07121f, #030407 74%);
+  background:radial-gradient(58% 46% at 50% 46%, rgba(7,18,31,.55), rgba(3,4,7,.18) 74%);
 }
 .reveal-head{
   position:absolute; top:clamp(20px,5vh,48px); left:50%; transform:translateX(-50%);
@@ -1242,7 +1242,7 @@ body.body--locked{ overflow:hidden; }
 .reveal-head .rv-eyebrow::before{ content:"JORN // "; color:var(--ice-dim); }
 .reveal-head p{ font-size:.74rem; letter-spacing:.34em; text-transform:uppercase; color:var(--ice-dim); margin-top:8px; }
 .reveal-stage{
-  position:absolute; inset:0; display:grid; place-items:center; overflow:hidden;
+  position:absolute; inset:0; z-index:2; display:grid; place-items:center; overflow:hidden;
   opacity:0; will-change:transform, opacity;
 }
 .rv-text{
@@ -1481,4 +1481,93 @@ body.body--locked{ overflow:hidden; }
 /* Reduced motion: never let the preloader sit over the page for the full 4.4s */
 @media (prefers-reduced-motion: reduce){
   .preloader{ animation:preloaderOut .01s linear 0s forwards; }
+}
+
+/* ============================================================
+   v3.6 — always-alive scrolling (ambient, progress, ticker)
+   ============================================================ */
+
+/* Page-wide ambient light field — no scroll position is ever flat black */
+.ambient{
+  position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+  background:
+    radial-gradient(46% 34% at 82% 8%, rgba(159,123,234,.10), transparent 70%),
+    radial-gradient(40% 34% at 10% 46%, rgba(76,215,246,.07), transparent 72%),
+    radial-gradient(36% 30% at 68% 86%, rgba(95,198,236,.06), transparent 70%);
+}
+.amb-orb{ position:absolute; border-radius:50%; filter:blur(72px); mix-blend-mode:screen; will-change:transform; }
+.amb-orb--1{ width:46vw; height:46vw; left:-12vw; top:-8vh; background:radial-gradient(circle, rgba(159,123,234,.28), transparent 68%); animation:ambDrift1 36s ease-in-out infinite alternate; }
+.amb-orb--2{ width:38vw; height:38vw; right:-10vw; top:32vh; background:radial-gradient(circle, rgba(76,215,246,.24), transparent 68%); animation:ambDrift2 44s ease-in-out infinite alternate; }
+.amb-orb--3{ width:30vw; height:30vw; left:26vw; bottom:-12vh; background:radial-gradient(circle, rgba(95,198,236,.18), transparent 68%); animation:ambDrift3 40s ease-in-out infinite alternate; }
+@keyframes ambDrift1{ from{ transform:translate3d(0,0,0) scale(1);} to{ transform:translate3d(9vw,11vh,0) scale(1.18);} }
+@keyframes ambDrift2{ from{ transform:translate3d(0,0,0) scale(1.1);} to{ transform:translate3d(-7vw,-12vh,0) scale(.95);} }
+@keyframes ambDrift3{ from{ transform:translate3d(0,0,0) scale(1);} to{ transform:translate3d(-6vw,10vh,0) scale(1.22);} }
+
+/* Top hairline: page scroll progress */
+.scroll-progress{
+  position:fixed; top:0; left:0; width:100%; height:2px; z-index:130;
+  pointer-events:none; background:rgba(173,223,241,.07);
+}
+.scroll-progress i{
+  display:block; height:100%; width:100%; transform-origin:0 50%; transform:scaleX(0);
+  background:var(--grad-accent); box-shadow:0 0 14px var(--glow);
+}
+
+/* Machine cards: gentle scroll drift (JS sets inline translateY) */
+.machines .store-visual{ transition:transform .35s cubic-bezier(.2,.7,.2,1); will-change:transform; }
+
+/* Spec ticker — infinite marquee of machine stats */
+.spec-ticker{
+  margin-top:64px; overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image:linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  border-block:1px solid rgba(173,223,241,.10);
+}
+.spec-ticker-track{ display:flex; width:max-content; animation:ticker 34s linear infinite; }
+.spec-ticker-track span{
+  font-family:var(--font-head); font-size:.72rem; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--ice-dim); padding:14px 0; white-space:nowrap;
+}
+.spec-ticker-track span::before{
+  content:""; display:inline-block; width:5px; height:5px; border-radius:50%;
+  background:#5FC6EC; box-shadow:0 0 10px #5FC6EC; margin:0 26px 2px; opacity:.75;
+}
+@keyframes ticker{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+
+/* Reveal backdrop: drifting light beams + rising motes */
+.rv-sweep{ position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+.rv-sweep i{
+  position:absolute; width:1px; height:44vh; top:-12vh; opacity:.45;
+  background:linear-gradient(180deg, transparent, rgba(173,223,241,.55), transparent);
+  animation:rvBeam 8s linear infinite;
+}
+.rv-sweep i:nth-child(1){ left:12%; }
+.rv-sweep i:nth-child(2){ left:33%; animation-delay:-5s; animation-duration:10s; }
+.rv-sweep i:nth-child(3){ left:63%; animation-delay:-3s; animation-duration:8.5s; }
+.rv-sweep i:nth-child(4){ left:87%; opacity:.3; animation-delay:-7s; animation-duration:11s; }
+@keyframes rvBeam{ from{ transform:translateY(0);} to{ transform:translateY(58vh);} }
+.rv-motes{ position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+.rv-motes i{
+  position:absolute; bottom:-4vh; width:3px; height:3px; border-radius:50%;
+  background:#ADDFF1; box-shadow:0 0 9px #5FC6EC; opacity:0; animation:rvMote 14s linear infinite;
+}
+.rv-motes i:nth-child(1){ left:8%; }
+.rv-motes i:nth-child(2){ left:26%; animation-delay:3.5s; }
+.rv-motes i:nth-child(3){ left:47%; animation-delay:7s; }
+.rv-motes i:nth-child(4){ left:63%; animation-delay:2.2s; }
+.rv-motes i:nth-child(5){ left:81%; animation-delay:5.6s; }
+.rv-motes i:nth-child(6){ left:92%; animation-delay:9s; }
+@keyframes rvMote{
+  0%{ transform:translateY(0); opacity:0; } 8%{ opacity:.7; }
+  90%{ opacity:.7; } 100%{ transform:translateY(-112vh); opacity:0; }
+}
+
+/* Photo dwell-zoom while the machine sports stage plays */
+.reveal-stage[data-spin="1"] .rv-shot{ transform:scale(1.07); }
+.rv-shot{ transition:transform .5s cubic-bezier(.16,1,.3,1); }
+
+/* Reduced motion: freeze the scenery, keep reveal content static */
+@media (prefers-reduced-motion: reduce){
+  .rv-sweep, .rv-motes, .spec-ticker-track{ animation:none; }
+  .amb-orb{ animation:none; }
 }
